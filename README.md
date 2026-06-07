@@ -7,27 +7,17 @@ A custom Home Assistant Lovelace card that renders a front-on network topology u
 
 This repository is the dashboard card distribution for HACS. Optional live SNMP polling is provided by the companion integration: [biscuitWizard/network-topology-snmp](https://github.com/biscuitWizard/network-topology-snmp).
 
-## Gallery
+## Screenshot
 
-Each image links to the dashboard YAML that produced it.
+![Rendered full home network topology](images/full-home-network.png)
 
-| Minimal | VLANs + Legend |
-| --- | --- |
-| [![Minimal network topology preview](images/examples/01-minimal.svg)](examples/01-minimal.yaml) | [![VLAN legend preview](images/examples/02-vlans-legend.svg)](examples/02-vlans-legend.yaml) |
+This is an actual browser render of the card using the full home network example. The repository also includes a screenshot harness for regenerating real per-example PNGs from the card renderer:
 
-| Groups | LAGG / Trunk / Fanout |
-| --- | --- |
-| [![Grouped zones preview](images/examples/03-groups.svg)](examples/03-groups.yaml) | [![LAGG trunk fanout preview](images/examples/04-lagg-trunk-fanout.svg)](examples/04-lagg-trunk-fanout.yaml) |
+```bash
+npm run screenshots
+```
 
-| Custom Template | Live Status |
-| --- | --- |
-| [![Custom template preview](images/examples/05-custom-template.svg)](examples/05-custom-template.yaml) | [![Live status preview](images/examples/06-live-status.svg)](examples/06-live-status.yaml) |
-
-| Full Showcase |
-| --- |
-| [![Full home network preview](images/examples/99-full-home-network.svg)](examples/99-full-home-network.yaml) |
-
-The committed SVG previews are lightweight and render on GitHub without extra tooling. To regenerate browser-captured PNG screenshots from the real card renderer, run `npm run screenshots`; PNG files are written to `images/examples/*.png`.
+That command writes browser-captured images to `images/examples/*.png` for every YAML example.
 
 ## Features
 
