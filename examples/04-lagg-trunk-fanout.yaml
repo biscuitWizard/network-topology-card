@@ -1,0 +1,111 @@
+type: custom:network-topology-card
+title: LAGG, Trunk, and QSFP Fanout
+layout:
+  padding: 96
+  device_scale: 0.95
+  link_curvature: 0.5
+
+devices:
+  - id: firewall
+    template: nuc-n150
+    name: Firewall
+    mgmt_ip: 10.0.0.1
+    x: -620
+    "y": -360
+    vlans:
+      SFP0: trunk
+      SFP1: trunk
+  - id: core
+    template: cisco-4500x
+    name: Core Switch
+    mgmt_ip: 10.0.0.10
+    x: 0
+    "y": 0
+    vlans:
+      "1": trunk
+      "2": trunk
+      "13": trunk
+      "14": trunk
+      "15": trunk
+      "16": trunk
+  - id: dist
+    template: hp-5700
+    name: Distribution Switch
+    mgmt_ip: 10.0.0.11
+    x: 0
+    "y": 520
+    vlans:
+      "20": 20
+      "54": trunk
+  - id: storage
+    template: generic-4u-2sfp-1qsfp-mgmt
+    name: Storage Server
+    mgmt_ip: 10.10.20.10
+    x: 820
+    "y": -60
+    vlans:
+      SFP0: trunk
+      SFP1: trunk
+      MGMT: 20
+  - id: ap
+    template: generic-small-1eth
+    name: AP
+    mgmt_ip: 10.20.1.10
+    x: -620
+    "y": 520
+    vlans:
+      ETH0: [20, 30]
+
+links:
+  # Member ports are paired by position: SFP0 to 1, SFP1 to 2.
+  - id: firewall-lagg
+    name: Firewall LAGG
+    type: lagg
+    state: up
+    endpoints:
+      - device: firewall
+        ports: [SFP0, SFP1]
+      - device: core
+        ports: ["1", "2"]
+
+  - id: server-lagg
+    name: Server LAGG
+    type: lagg
+    state: up
+    endpoints:
+      - device: storage
+        ports: [SFP0, SFP1]
+      - device: core
+        ports: ["3", "4"]
+
+  # Four Cisco 10G ports fan out into one HP QSFP+ port.
+  - id: core-dist-fanout
+    name: Core QSFP Fanout
+    type: trunk
+    fanout: qsfp40g-to-4x10g
+    state: up
+    endpoints:
+      - device: core
+        ports: ["13", "14", "15", "16"]
+      - device: dist
+        ports: ["54"]
+
+  - id: ap-uplink
+    name: AP Trunk
+    type: trunk
+    state: up
+    endpoints:
+      - device: ap
+        ports: [ETH0]
+      - device: dist
+        ports: ["20"]
+
+  - id: mgmt-link
+    name: Server Mgmt
+    type: link
+    state: up
+    endpoints:
+      - device: storage
+        ports: [MGMT]
+      - device: dist
+        ports: ["33"]

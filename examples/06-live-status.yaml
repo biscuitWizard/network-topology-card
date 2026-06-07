@@ -1,0 +1,106 @@
+type: custom:network-topology-card
+title: Live Port Status
+layout:
+  padding: 84
+  device_scale: 0.95
+  link_curvature: 0.4
+
+devices:
+  - id: core
+    template: cisco-4500x
+    name: Core Switch
+    mgmt_ip: 10.0.0.10
+    x: 0
+    "y": 0
+    # network-topology-snmp exposes per-port status in this sensor.
+    telemetry_entity: sensor.core_switch_ports
+    port_map:
+      "1": Te1/1
+      "2": Te1/2
+      "3": Te1/3
+      "4": Te1/4
+      "13": Te1/13
+      "14": Te1/14
+      "15": Te1/15
+      "16": Te1/16
+    vlans:
+      "1": trunk
+      "2": trunk
+      "13": trunk
+      "14": trunk
+      "15": trunk
+      "16": trunk
+
+  - id: dist
+    template: hp-5700
+    name: Distribution Switch
+    mgmt_ip: 10.0.0.11
+    x: 0
+    "y": 460
+    # Map card port IDs to SNMP ifName values from network-topology-snmp.
+    telemetry_entity: sensor.dist_switch_ports
+    port_map:
+      "20": GigabitEthernet1/0/20
+      "21": GigabitEthernet1/0/21
+      "33": GigabitEthernet1/0/33
+      "54":
+        - Ten-GigabitEthernet1/0/54:1
+        - Ten-GigabitEthernet1/0/54:2
+        - Ten-GigabitEthernet1/0/54:3
+        - Ten-GigabitEthernet1/0/54:4
+    vlans:
+      "20": 20
+      "21": [20, 30]
+      "33": 1
+      "54": trunk
+
+  - id: firewall
+    template: nuc-n150
+    name: Firewall
+    mgmt_ip: 10.0.0.1
+    x: -660
+    "y": -320
+    vlans:
+      SFP0: trunk
+      SFP1: trunk
+
+  - id: ap
+    template: generic-small-1eth
+    name: Access Point
+    mgmt_ip: 10.20.1.10
+    x: -660
+    "y": 460
+    vlans:
+      ETH0: [20, 30]
+
+links:
+  - id: firewall-lagg
+    name: Firewall LAGG
+    type: lagg
+    state: up
+    endpoints:
+      - device: firewall
+        ports: [SFP0, SFP1]
+      - device: core
+        ports: ["1", "2"]
+
+  - id: core-dist
+    name: Core Fanout
+    type: trunk
+    fanout: qsfp40g-to-4x10g
+    state: up
+    endpoints:
+      - device: core
+        ports: ["13", "14", "15", "16"]
+      - device: dist
+        ports: ["54"]
+
+  - id: ap-link
+    name: AP Trunk
+    type: trunk
+    state: up
+    endpoints:
+      - device: ap
+        ports: [ETH0]
+      - device: dist
+        ports: ["21"]

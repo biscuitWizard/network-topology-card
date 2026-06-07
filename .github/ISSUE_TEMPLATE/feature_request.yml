@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest an improvement for the Network Topology Card.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement. Please describe the dashboard use case the feature should support.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Use case
+      description: What are you trying to show or manage in Home Assistant?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the behavior, configuration, or visual change you would like.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Note any workarounds or other approaches you tried.
+    validations:
+      required: false
+  - type: textarea
+    id: config-example
+    attributes:
+      label: Example configuration
+      description: If helpful, include a sample Lovelace YAML shape for the feature.
+      render: yaml
+    validations:
+      required: false

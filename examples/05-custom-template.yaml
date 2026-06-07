@@ -1,0 +1,65 @@
+type: custom:network-topology-card
+title: Inline Custom Template
+layout:
+  padding: 72
+  device_scale: 1
+  link_curvature: 0.3
+
+templates:
+  - id: tiny-firewall-2eth
+    label: Tiny Firewall
+    width: 360
+    height: 180
+    chassis: generic-2u
+    ports:
+      - { id: WAN, label: WAN, type: rj45, speed: 1G, x: 92, y: 116, w: 46, h: 40 }
+      - { id: LAN, label: LAN, type: rj45, speed: 1G, x: 222, y: 116, w: 46, h: 40 }
+
+devices:
+  - id: firewall
+    template: tiny-firewall-2eth
+    name: Lab Firewall
+    mgmt_ip: 10.0.0.1
+    x: -360
+    "y": 0
+    vlans:
+      WAN: 99
+      LAN: trunk
+  - id: switch
+    template: hp-5700
+    name: Lab Switch
+    mgmt_ip: 10.0.0.11
+    x: 360
+    "y": 0
+    scale: 0.85
+    vlans:
+      "1": trunk
+      "20": 20
+  - id: test-host
+    template: generic-small-1eth
+    name: Test Host
+    mgmt_ip: 10.20.0.50
+    x: 360
+    "y": 360
+    vlans:
+      ETH0: 20
+
+links:
+  - id: firewall-switch
+    name: LAN Trunk
+    type: trunk
+    state: up
+    endpoints:
+      - device: firewall
+        ports: [LAN]
+      - device: switch
+        ports: ["1"]
+  - id: host-access
+    name: Access VLAN 20
+    type: link
+    state: up
+    endpoints:
+      - device: test-host
+        ports: [ETH0]
+      - device: switch
+        ports: ["20"]

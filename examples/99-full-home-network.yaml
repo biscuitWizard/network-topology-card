@@ -1,0 +1,324 @@
+type: custom:network-topology-card
+title: Full Home Network
+grid_options:
+  columns: full
+  rows: 20
+layout:
+  padding: 90
+  link_curvature: 0.45
+  device_scale: 1
+
+legend:
+  show: true
+  title: VLANs
+  position: top-right
+
+vlans:
+  - id: 1
+    name: Management
+    color: "#3b82f6"
+  - id: 10
+    name: Servers
+    color: "#22c55e"
+  - id: 20
+    name: Devices
+    color: "#f59e0b"
+  - id: 30
+    name: Computers
+    color: "#a855f7"
+  - id: 99
+    name: Transit
+    color: "#ef4444"
+
+# Dashed zone box behind the server stack.
+groups:
+  - id: servers
+    name: Servers
+    vlan: 10
+    devices: [dsn, dev, swarm]
+
+devices:
+  - id: slzb
+    template: generic-small-1eth
+    name: SLZB-06U
+    mgmt_ip: 10.20.5.5
+    x: -660
+    "y": 250
+    vlans:
+      ETH0: 20
+
+  - id: eap
+    template: generic-small-1eth
+    name: EAP610
+    mgmt_ip: 10.20.1.10
+    x: -660
+    "y": 520
+    vlans:
+      ETH0: [20, 30]
+
+  - id: nuc
+    template: nuc-n150
+    name: pfSense (NUC N150)
+    mgmt_ip: 10.0.0.2
+    x: 60
+    "y": -470
+    vlans:
+      ETH0: 1
+      SFP0: trunk
+      SFP1: trunk
+
+  - id: cisco
+    template: cisco-4500x
+    name: Core Switch
+    mgmt_ip: 10.0.0.10
+    x: 0
+    "y": 0
+    # Live status from network-topology-snmp via Repo B sensors.
+    telemetry_entity: sensor.core_switch_ports
+    port_map:
+      "1": Te1/1
+      "2": Te1/2
+      "3": Te1/3
+      "4": Te1/4
+      "5": Te1/5
+      "6": Te1/6
+      "13": Te1/13
+      "14": Te1/14
+      "15": Te1/15
+      "16": Te1/16
+    vlans:
+      "1": trunk
+      "2": trunk
+      "3": trunk
+      "4": trunk
+      "5": trunk
+      "6": trunk
+      "13": trunk
+      "14": trunk
+      "15": trunk
+      "16": trunk
+
+  - id: hp
+    template: hp-5700
+    name: Distribution Switch
+    mgmt_ip: 10.0.0.11
+    x: 0
+    "y": 440
+    telemetry_entity: sensor.dist_switch_ports
+    port_map:
+      "20": GigabitEthernet1/0/20
+      "21": GigabitEthernet1/0/21
+      "33": GigabitEthernet1/0/33
+      "34": GigabitEthernet1/0/34
+      "35": GigabitEthernet1/0/35
+      "41": GigabitEthernet1/0/41
+      "42": GigabitEthernet1/0/42
+      "43": GigabitEthernet1/0/43
+      "54":
+        - Ten-GigabitEthernet1/0/54:1
+        - Ten-GigabitEthernet1/0/54:2
+        - Ten-GigabitEthernet1/0/54:3
+        - Ten-GigabitEthernet1/0/54:4
+    vlans:
+      "1": 10
+      "2": 10
+      "3": 10
+      "4": 10
+      "5": 10
+      "6": 10
+      "7": 10
+      "8": 10
+      "9": 10
+      "10": 10
+      "11": 10
+      "12": 10
+      "13": 10
+      "14": 10
+      "15": 10
+      "16": 10
+      "17": 20
+      "18": 20
+      "19": 20
+      "20": 20
+      "21": [20, 30]
+      "22": 20
+      "23": 20
+      "24": 20
+      "25": 20
+      "26": 20
+      "27": 20
+      "28": 20
+      "29": 20
+      "30": 20
+      "31": 20
+      "32": 20
+      "33": 1
+      "34": 1
+      "35": 1
+      "36": 30
+      "37": 30
+      "38": 30
+      "39": 30
+      "40": 30
+      "41": 30
+      "42": 30
+      "43": 30
+      "44": 30
+      "45": 30
+      "46": 30
+      "47": 30
+      "48": 30
+      "49": 99
+      "50": 99
+      "51": trunk
+      "52": trunk
+      "53": trunk
+      "54": trunk
+
+  - id: dsn
+    template: generic-4u-2sfp-1qsfp-mgmt
+    name: DSN
+    mgmt_ip: 10.10.20.1
+    x: 1340
+    "y": -330
+    vlans:
+      SFP0: trunk
+      SFP1: trunk
+      QSFP0: trunk
+      MGMT: 1
+
+  - id: dev
+    template: generic-2u-2sfp-1qsfp-mgmt
+    name: DEV
+    mgmt_ip: 10.10.50.1
+    x: 1340
+    "y": 300
+    vlans:
+      SFP0: trunk
+      SFP1: trunk
+      QSFP0: trunk
+      MGMT: 1
+
+  - id: swarm
+    template: generic-2u-4eth-mgmt
+    name: Swarm
+    mgmt_ip: 10.10.10.1
+    x: 1340
+    "y": 660
+    vlans:
+      ETH2: 30
+      ETH3: 30
+      ETH4: 30
+      MGMT: 1
+
+links:
+  - id: lagg0
+    name: LAGG0
+    type: lagg
+    state: up
+    endpoints:
+      - device: nuc
+        ports: [SFP0, SFP1]
+      - device: cisco
+        ports: ["1", "2"]
+
+  - id: trunk-core
+    name: Core Trunk
+    type: trunk
+    fanout: qsfp40g-to-4x10g
+    state: up
+    endpoints:
+      - device: cisco
+        ports: ["13", "14", "15", "16"]
+      - device: hp
+        ports: ["54"]
+
+  - id: dsn-lagg
+    name: DSN LAGG
+    type: lagg
+    state: up
+    endpoints:
+      - device: dsn
+        ports: [SFP0, SFP1]
+      - device: cisco
+        ports: ["3", "4"]
+
+  - id: dev-lagg
+    name: DEV LAGG
+    type: lagg
+    state: up
+    endpoints:
+      - device: dev
+        ports: [SFP0, SFP1]
+      - device: cisco
+        ports: ["5", "6"]
+
+  - id: dsn-dev
+    name: DSN-DEV 40G
+    type: link
+    state: up
+    endpoints:
+      - device: dsn
+        ports: [QSFP0]
+      - device: dev
+        ports: [QSFP0]
+
+  - id: swarm-agg
+    name: Swarm AGG
+    type: lagg
+    state: up
+    endpoints:
+      - device: swarm
+        ports: [ETH2, ETH3, ETH4]
+      - device: hp
+        ports: ["41", "42", "43"]
+
+  - id: swarm-mgmt
+    name: Swarm Mgmt
+    type: link
+    state: up
+    endpoints:
+      - device: swarm
+        ports: [MGMT]
+      - device: hp
+        ports: ["33"]
+
+  - id: dsn-mgmt
+    name: DSN Mgmt
+    type: link
+    state: up
+    endpoints:
+      - device: dsn
+        ports: [MGMT]
+      - device: hp
+        ports: ["34"]
+
+  - id: dev-mgmt
+    name: DEV Mgmt
+    type: link
+    state: up
+    endpoints:
+      - device: dev
+        ports: [MGMT]
+      - device: hp
+        ports: ["35"]
+
+  - id: eap-link
+    name: EAP610
+    type: trunk
+    state: up
+    endpoints:
+      - device: eap
+        ports: [ETH0]
+      - device: hp
+        ports: ["21"]
+
+  - id: slzb-link
+    name: SLZB-06U
+    type: link
+    state: up
+    endpoints:
+      - device: slzb
+        ports: [ETH0]
+      - device: hp
+        ports: ["20"]

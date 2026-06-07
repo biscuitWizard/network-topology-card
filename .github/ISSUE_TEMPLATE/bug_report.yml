@@ -1,0 +1,69 @@
+name: Bug report
+description: Report a problem with the Network Topology Card.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Please include enough Home Assistant and card configuration detail to reproduce it.
+  - type: input
+    id: home-assistant-version
+    attributes:
+      label: Home Assistant version
+      description: Find this in Settings > About.
+      placeholder: "2024.8.0"
+    validations:
+      required: true
+  - type: input
+    id: card-version
+    attributes:
+      label: Network Topology Card version
+      description: The installed release version or commit.
+      placeholder: "v0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: installation-method
+    attributes:
+      label: Installation method
+      options:
+        - HACS
+        - Manual
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Add the card to a dashboard
+        2. Configure ...
+        3. See ...
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Card configuration
+      description: Paste the relevant Lovelace YAML. Remove secrets, tokens, and private hostnames if needed.
+      render: yaml
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Browser console or Home Assistant logs
+      description: Include any relevant errors from the browser console or Home Assistant logs.
+      render: text
+    validations:
+      required: false

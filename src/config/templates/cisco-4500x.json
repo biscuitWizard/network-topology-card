@@ -1,0 +1,25 @@
+{
+  "id": "cisco-4500x",
+  "label": "Cisco Catalyst 4500-X",
+  "width": 1000,
+  "height": 130,
+  "chassis": "cisco-4500x",
+  "ports": [
+    { "id": "1",  "label": "Te1/1",  "type": "sfp+", "speed": "10G", "x": 250, "y": 52, "w": 44, "h": 24 },
+    { "id": "2",  "label": "Te1/2",  "type": "sfp+", "speed": "10G", "x": 250, "y": 86, "w": 44, "h": 24 },
+    { "id": "3",  "label": "Te1/3",  "type": "sfp+", "speed": "10G", "x": 310, "y": 52, "w": 44, "h": 24 },
+    { "id": "4",  "label": "Te1/4",  "type": "sfp+", "speed": "10G", "x": 310, "y": 86, "w": 44, "h": 24 },
+    { "id": "5",  "label": "Te1/5",  "type": "sfp+", "speed": "10G", "x": 370, "y": 52, "w": 44, "h": 24 },
+    { "id": "6",  "label": "Te1/6",  "type": "sfp+", "speed": "10G", "x": 370, "y": 86, "w": 44, "h": 24 },
+    { "id": "7",  "label": "Te1/7",  "type": "sfp+", "speed": "10G", "x": 430, "y": 52, "w": 44, "h": 24 },
+    { "id": "8",  "label": "Te1/8",  "type": "sfp+", "speed": "10G", "x": 430, "y": 86, "w": 44, "h": 24 },
+    { "id": "9",  "label": "Te1/9",  "type": "sfp+", "speed": "10G", "x": 490, "y": 52, "w": 44, "h": 24 },
+    { "id": "10", "label": "Te1/10", "type": "sfp+", "speed": "10G", "x": 490, "y": 86, "w": 44, "h": 24 },
+    { "id": "11", "label": "Te1/11", "type": "sfp+", "speed": "10G", "x": 550, "y": 52, "w": 44, "h": 24 },
+    { "id": "12", "label": "Te1/12", "type": "sfp+", "speed": "10G", "x": 550, "y": 86, "w": 44, "h": 24 },
+    { "id": "13", "label": "Te1/13", "type": "sfp+", "speed": "10G", "x": 610, "y": 52, "w": 44, "h": 24 },
+    { "id": "14", "label": "Te1/14", "type": "sfp+", "speed": "10G", "x": 610, "y": 86, "w": 44, "h": 24 },
+    { "id": "15", "label": "Te1/15", "type": "sfp+", "speed": "10G", "x": 670, "y": 52, "w": 44, "h": 24 },
+    { "id": "16", "label": "Te1/16", "type": "sfp+", "speed": "10G", "x": 670, "y": 86, "w": 44, "h": 24 }
+  ]
+}

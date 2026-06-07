@@ -1,0 +1,10 @@
+{
+  "id": "generic-small-1eth",
+  "label": "Generic Small Device",
+  "width": 420,
+  "height": 200,
+  "chassis": "generic-small",
+  "ports": [
+    { "id": "ETH0", "label": "ETH0", "type": "rj45", "speed": "1G", "x": 210, "y": 150, "w": 46, "h": 40 }
+  ]
+}

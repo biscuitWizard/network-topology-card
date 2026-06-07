@@ -1,0 +1,16 @@
+{
+  "id": "generic-4u-4eth-2sfp-mgmt",
+  "label": "Generic 4U Server",
+  "width": 1000,
+  "height": 520,
+  "chassis": "generic-4u",
+  "ports": [
+    { "id": "ETH0", "label": "ETH0", "type": "rj45", "speed": "1G",  "x": 230, "y": 454, "w": 46, "h": 40 },
+    { "id": "ETH1", "label": "ETH1", "type": "rj45", "speed": "1G",  "x": 320, "y": 454, "w": 46, "h": 40 },
+    { "id": "ETH2", "label": "ETH2", "type": "rj45", "speed": "1G",  "x": 410, "y": 454, "w": 46, "h": 40 },
+    { "id": "ETH3", "label": "ETH3", "type": "rj45", "speed": "1G",  "x": 500, "y": 454, "w": 46, "h": 40 },
+    { "id": "SFP0", "label": "SFP0", "type": "sfp+", "speed": "10G", "x": 590, "y": 454, "w": 50, "h": 27 },
+    { "id": "SFP1", "label": "SFP1", "type": "sfp+", "speed": "10G", "x": 680, "y": 454, "w": 50, "h": 27 },
+    { "id": "MGMT", "label": "MGMT", "type": "rj45", "speed": "1G",  "x": 770, "y": 454, "w": 46, "h": 40 }
+  ]
+}

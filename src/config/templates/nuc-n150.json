@@ -1,0 +1,14 @@
+{
+  "id": "nuc-n150",
+  "label": "Intel NUC N150",
+  "width": 620,
+  "height": 230,
+  "chassis": "nuc-n150",
+  "ports": [
+    { "id": "ETH0", "label": "ETH0", "type": "rj45", "speed": "1G",  "x": 150, "y": 145, "w": 42, "h": 38 },
+    { "id": "ETH1", "label": "ETH1", "type": "rj45", "speed": "1G",  "x": 212, "y": 145, "w": 42, "h": 38 },
+    { "id": "ETH2", "label": "ETH2", "type": "rj45", "speed": "1G",  "x": 274, "y": 145, "w": 42, "h": 38 },
+    { "id": "SFP0", "label": "SFP0", "type": "sfp+", "speed": "10G", "x": 362, "y": 145, "w": 44, "h": 24 },
+    { "id": "SFP1", "label": "SFP1", "type": "sfp+", "speed": "10G", "x": 432, "y": 145, "w": 44, "h": 24 }
+  ]
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>network-topology-card dev harness</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        padding: 24px;
+        background: #11151a;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        color: #e7eaee;
+      }
+      h1 {
+        font-size: 1rem;
+        font-weight: 600;
+        opacity: 0.7;
+        margin: 0 0 16px;
+      }
+      .stage {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      /* Provide the ha-card custom-property surface the card expects. */
+      network-topology-card {
+        --ha-card-background: #1c2026;
+        --card-background-color: #1c2026;
+        --ha-card-border-radius: 14px;
+        --primary-text-color: #e7eaee;
+        --secondary-text-color: #9aa3ad;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <h1>network-topology-card &mdash; dev harness</h1>
+      <network-topology-card id="card"></network-topology-card>
+    </div>
+
+    <script type="module">
+      import "./network-topology-card.js";
+      import { testConfig, mockHass } from "./config.js";
+
+      customElements.whenDefined("network-topology-card").then(() => {
+        const card = document.getElementById("card");
+        card.setConfig(testConfig);
+        card.hass = mockHass;
+      });
+    </script>
+  </body>
+</html>

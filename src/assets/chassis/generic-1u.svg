@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 130">
+  <defs>
+    <linearGradient id="g1u-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34383c"/>
+      <stop offset="0.5" stop-color="#23272b"/>
+      <stop offset="1" stop-color="#131518"/>
+    </linearGradient>
+    <linearGradient id="g1u-ear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34373a"/>
+      <stop offset="1" stop-color="#16181a"/>
+    </linearGradient>
+    <linearGradient id="g1u-panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0b0c"/>
+      <stop offset="0.5" stop-color="#15171a"/>
+      <stop offset="1" stop-color="#050606"/>
+    </linearGradient>
+  </defs>
+
+  <g class="chassis chassis-generic-1u">
+    <!-- mounting ears -->
+    <rect x="0" y="6" width="24" height="118" rx="3" fill="url(#g1u-ear)" stroke="#0c0d0e" stroke-width="1"/>
+    <rect x="976" y="6" width="24" height="118" rx="3" fill="url(#g1u-ear)" stroke="#0c0d0e" stroke-width="1"/>
+    <circle cx="12" cy="22" r="4" fill="#15171a" stroke="#0a0b0c" stroke-width="0.8"/>
+    <circle cx="12" cy="108" r="4" fill="#15171a" stroke="#0a0b0c" stroke-width="0.8"/>
+    <circle cx="988" cy="22" r="4" fill="#15171a" stroke="#0a0b0c" stroke-width="0.8"/>
+    <circle cx="988" cy="108" r="4" fill="#15171a" stroke="#0a0b0c" stroke-width="0.8"/>
+
+    <!-- body -->
+    <rect x="20" y="2" width="960" height="126" rx="5" fill="url(#g1u-body)" stroke="#0a0b0c" stroke-width="1.2"/>
+    <line x1="24" y1="6.5" x2="976" y2="6.5" stroke="#4a4d50" stroke-width="1" opacity="0.5"/>
+
+    <!-- left vent grille -->
+    <g fill="#0c0e10" stroke="#3a3f44" stroke-width="0.5" opacity="0.8">
+      <rect x="40"  y="30" width="8" height="70" rx="3"/>
+      <rect x="56"  y="30" width="8" height="70" rx="3"/>
+      <rect x="72"  y="30" width="8" height="70" rx="3"/>
+      <rect x="88"  y="30" width="8" height="70" rx="3"/>
+      <rect x="104" y="30" width="8" height="70" rx="3"/>
+      <rect x="120" y="30" width="8" height="70" rx="3"/>
+    </g>
+
+    <!-- power button + status LEDs -->
+    <circle cx="160" cy="48" r="9" fill="#1c1f22" stroke="#0a0b0c" stroke-width="1.2"/>
+    <circle cx="160" cy="48" r="4" fill="#0e1012"/>
+    <circle cx="156" cy="92" r="3" fill="#2f8f4a"/>
+    <circle cx="168" cy="92" r="3" fill="#b9a13a"/>
+
+    <!-- I/O panel recess (ports placed here) -->
+    <rect x="260" y="33" width="480" height="66" rx="4" fill="url(#g1u-panel)" stroke="#000000" stroke-width="1.6"/>
+    <rect x="262.5" y="35.5" width="475" height="61" rx="3" fill="none" stroke="#2a2d30" stroke-width="0.7" opacity="0.5"/>
+
+    <!-- right label -->
+    <text x="870" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="2" fill="#5a5e62">1U SERVER</text>
+  </g>
+</svg>

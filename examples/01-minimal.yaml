@@ -1,0 +1,33 @@
+type: custom:network-topology-card
+title: Minimal Network Topology
+layout:
+  padding: 64
+  device_scale: 1
+  link_curvature: 0.25
+
+devices:
+  - id: core
+    template: cisco-4500x
+    name: Core Switch
+    mgmt_ip: 10.0.0.10
+    x: 0
+    "y": 0
+    scale: 0.9
+  - id: router
+    template: nuc-n150
+    name: Firewall
+    mgmt_ip: 10.0.0.1
+    x: 0
+    "y": -360
+    scale: 1
+
+links:
+  - id: router-core
+    name: WAN/LAN
+    type: link
+    state: up
+    endpoints:
+      - device: router
+        ports: [SFP0]
+      - device: core
+        ports: ["1"]

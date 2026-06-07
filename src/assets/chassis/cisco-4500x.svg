@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 130">
+  <defs>
+    <linearGradient id="c4500x-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dcdee0"/>
+      <stop offset="0.12" stop-color="#cfd2d5"/>
+      <stop offset="0.5" stop-color="#bcc0c3"/>
+      <stop offset="0.9" stop-color="#aeb2b5"/>
+      <stop offset="1" stop-color="#9b9fa2"/>
+    </linearGradient>
+    <linearGradient id="c4500x-ear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c4c7ca"/>
+      <stop offset="1" stop-color="#94989b"/>
+    </linearGradient>
+    <linearGradient id="c4500x-recess" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#121416"/>
+      <stop offset="0.5" stop-color="#1b1e21"/>
+      <stop offset="1" stop-color="#0c0e10"/>
+    </linearGradient>
+    <linearGradient id="c4500x-module" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c7cacd"/>
+      <stop offset="1" stop-color="#a4a8ab"/>
+    </linearGradient>
+  </defs>
+
+  <g class="chassis chassis-cisco-4500x">
+    <!-- mounting ears -->
+    <rect x="0" y="6" width="26" height="118" rx="3" fill="url(#c4500x-ear)" stroke="#7e8285" stroke-width="1"/>
+    <rect x="974" y="6" width="26" height="118" rx="3" fill="url(#c4500x-ear)" stroke="#7e8285" stroke-width="1"/>
+    <circle cx="13" cy="22" r="4" fill="#6f7376" stroke="#54585b" stroke-width="0.8"/>
+    <circle cx="13" cy="108" r="4" fill="#6f7376" stroke="#54585b" stroke-width="0.8"/>
+    <circle cx="987" cy="22" r="4" fill="#6f7376" stroke="#54585b" stroke-width="0.8"/>
+    <circle cx="987" cy="108" r="4" fill="#6f7376" stroke="#54585b" stroke-width="0.8"/>
+
+    <!-- main chassis body -->
+    <rect x="22" y="2" width="956" height="126" rx="5" fill="url(#c4500x-body)" stroke="#7c8083" stroke-width="1.2"/>
+    <!-- top + bottom bezel highlight lines -->
+    <line x1="26" y1="6.5" x2="974" y2="6.5" stroke="#eef0f1" stroke-width="1" opacity="0.7"/>
+    <line x1="26" y1="123.5" x2="974" y2="123.5" stroke="#85898c" stroke-width="1" opacity="0.7"/>
+
+    <!-- ===== LEFT ZONE: branding + mgmt/console + status LEDs ===== -->
+    <text x="34" y="40" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" letter-spacing="1.5" fill="#2f3438">CISCO</text>
+    <text x="34" y="55" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#4a4f53">Catalyst 4500-X Series</text>
+
+    <!-- mgmt RJ45 + console cluster (decoration only) -->
+    <rect x="86" y="62" width="26" height="22" rx="2" fill="#2b2f33" stroke="#16191b" stroke-width="1"/>
+    <rect x="90" y="66" width="18" height="11" rx="1" fill="#0c0e10"/>
+    <rect x="118" y="64" width="16" height="9" rx="1.5" fill="#1c1f22" stroke="#0c0e10" stroke-width="0.8"/>
+    <rect x="118" y="76" width="16" height="9" rx="1.5" fill="#1c1f22" stroke="#0c0e10" stroke-width="0.8"/>
+    <text x="86" y="96" font-family="Arial, Helvetica, sans-serif" font-size="6.5" fill="#55595d">MGMT  CONSOLE</text>
+
+    <!-- status LEDs -->
+    <g>
+      <circle cx="40" cy="78" r="3.2" fill="#3a7d3a"/>
+      <circle cx="52" cy="78" r="3.2" fill="#7d7a3a"/>
+      <circle cx="64" cy="78" r="3.2" fill="#3a3f44"/>
+      <text x="34" y="96" font-family="Arial, Helvetica, sans-serif" font-size="6.5" fill="#55595d">SYS  STAT  ACT</text>
+    </g>
+
+    <!-- ===== CENTER PORT BAY recessed panel (16x SFP+) ===== -->
+    <rect x="214" y="32" width="494" height="68" rx="3" fill="url(#c4500x-recess)" stroke="#06080a" stroke-width="1.4"/>
+    <rect x="216.5" y="34.5" width="489" height="63" rx="2" fill="none" stroke="#33383c" stroke-width="0.7" opacity="0.5"/>
+
+    <!-- ===== RIGHT ZONE: blank uplink module bay + 2 thumbscrews ===== -->
+    <rect x="742" y="20" width="224" height="90" rx="3" fill="url(#c4500x-module)" stroke="#83878a" stroke-width="1.2"/>
+    <rect x="748" y="26" width="212" height="78" rx="2" fill="none" stroke="#9b9fa2" stroke-width="0.8" opacity="0.7"/>
+    <!-- ventilation slots in module -->
+    <g fill="#8d9194">
+      <rect x="800" y="44" width="3" height="42" rx="1.5"/>
+      <rect x="810" y="44" width="3" height="42" rx="1.5"/>
+      <rect x="820" y="44" width="3" height="42" rx="1.5"/>
+      <rect x="830" y="44" width="3" height="42" rx="1.5"/>
+      <rect x="840" y="44" width="3" height="42" rx="1.5"/>
+      <rect x="850" y="44" width="3" height="42" rx="1.5"/>
+      <rect x="860" y="44" width="3" height="42" rx="1.5"/>
+      <rect x="870" y="44" width="3" height="42" rx="1.5"/>
+    </g>
+    <!-- thumbscrews -->
+    <circle cx="760" cy="65" r="9" fill="#b6babd" stroke="#7c8083" stroke-width="1.2"/>
+    <circle cx="760" cy="65" r="4.5" fill="#9a9ea1" stroke="#7c8083" stroke-width="0.8"/>
+    <circle cx="948" cy="65" r="9" fill="#b6babd" stroke="#7c8083" stroke-width="1.2"/>
+    <circle cx="948" cy="65" r="4.5" fill="#9a9ea1" stroke="#7c8083" stroke-width="0.8"/>
+
+    <!-- subtle vents between left zone and bay -->
+    <g fill="#a7abae">
+      <rect x="160" y="40" width="3" height="50" rx="1.5"/>
+      <rect x="170" y="40" width="3" height="50" rx="1.5"/>
+      <rect x="180" y="40" width="3" height="50" rx="1.5"/>
+      <rect x="190" y="40" width="3" height="50" rx="1.5"/>
+    </g>
+  </g>
+</svg>

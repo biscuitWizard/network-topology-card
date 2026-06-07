@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260">
+  <defs>
+    <linearGradient id="g2u-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34383c"/>
+      <stop offset="0.5" stop-color="#23272b"/>
+      <stop offset="1" stop-color="#131518"/>
+    </linearGradient>
+    <linearGradient id="g2u-ear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34373a"/>
+      <stop offset="1" stop-color="#16181a"/>
+    </linearGradient>
+    <linearGradient id="g2u-panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0b0c"/>
+      <stop offset="0.5" stop-color="#15171a"/>
+      <stop offset="1" stop-color="#050606"/>
+    </linearGradient>
+    <linearGradient id="g2u-sled" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c3034"/>
+      <stop offset="1" stop-color="#171a1d"/>
+    </linearGradient>
+  </defs>
+
+  <g class="chassis chassis-generic-2u">
+    <!-- mounting ears -->
+    <rect x="0" y="6" width="24" height="248" rx="3" fill="url(#g2u-ear)" stroke="#0c0d0e" stroke-width="1"/>
+    <rect x="976" y="6" width="24" height="248" rx="3" fill="url(#g2u-ear)" stroke="#0c0d0e" stroke-width="1"/>
+    <circle cx="12" cy="24" r="4" fill="#15171a" stroke="#0a0b0c" stroke-width="0.8"/>
+    <circle cx="12" cy="236" r="4" fill="#15171a" stroke="#0a0b0c" stroke-width="0.8"/>
+    <circle cx="988" cy="24" r="4" fill="#15171a" stroke="#0a0b0c" stroke-width="0.8"/>
+    <circle cx="988" cy="236" r="4" fill="#15171a" stroke="#0a0b0c" stroke-width="0.8"/>
+
+    <!-- body -->
+    <rect x="20" y="2" width="960" height="256" rx="6" fill="url(#g2u-body)" stroke="#0a0b0c" stroke-width="1.2"/>
+    <line x1="24" y1="6.5" x2="976" y2="6.5" stroke="#4a4d50" stroke-width="1" opacity="0.5"/>
+
+    <!-- front drive bays (single row of 12 sleds) -->
+    <g>
+      <rect x="40"  y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="110" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="180" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="250" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="320" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="390" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="460" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="530" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="600" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="670" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="740" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+      <rect x="810" y="22" width="62" height="128" rx="3" fill="url(#g2u-sled)" stroke="#0a0b0c" stroke-width="1"/>
+    </g>
+    <!-- sled handle slots + activity LEDs -->
+    <g fill="#0c0e10">
+      <rect x="46"  y="30" width="8" height="112" rx="2"/>
+      <rect x="116" y="30" width="8" height="112" rx="2"/>
+      <rect x="186" y="30" width="8" height="112" rx="2"/>
+      <rect x="256" y="30" width="8" height="112" rx="2"/>
+      <rect x="326" y="30" width="8" height="112" rx="2"/>
+      <rect x="396" y="30" width="8" height="112" rx="2"/>
+      <rect x="466" y="30" width="8" height="112" rx="2"/>
+      <rect x="536" y="30" width="8" height="112" rx="2"/>
+      <rect x="606" y="30" width="8" height="112" rx="2"/>
+      <rect x="676" y="30" width="8" height="112" rx="2"/>
+      <rect x="746" y="30" width="8" height="112" rx="2"/>
+      <rect x="816" y="30" width="8" height="112" rx="2"/>
+    </g>
+
+    <!-- I/O panel recess (ports placed here) -->
+    <rect x="260" y="175" width="480" height="66" rx="4" fill="url(#g2u-panel)" stroke="#000000" stroke-width="1.6"/>
+    <rect x="262.5" y="177.5" width="475" height="61" rx="3" fill="none" stroke="#2a2d30" stroke-width="0.7" opacity="0.5"/>
+
+    <!-- power button + LEDs -->
+    <circle cx="900" cy="190" r="10" fill="#1c1f22" stroke="#0a0b0c" stroke-width="1.2"/>
+    <circle cx="900" cy="190" r="4.5" fill="#0e1012"/>
+    <circle cx="894" cy="222" r="3.4" fill="#2f8f4a"/>
+    <circle cx="908" cy="222" r="3.4" fill="#b9a13a"/>
+    <text x="150" y="210" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" letter-spacing="2" fill="#5a5e62">2U SERVER</text>
+  </g>
+</svg>

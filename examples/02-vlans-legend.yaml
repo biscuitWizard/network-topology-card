@@ -1,0 +1,93 @@
+type: custom:network-topology-card
+title: VLANs and Legend
+layout:
+  padding: 80
+  device_scale: 0.95
+  link_curvature: 0.35
+
+legend:
+  show: true
+  title: VLAN Membership
+  position: bottom-right
+
+vlans:
+  - id: 10
+    name: Servers
+    color: "#22c55e"
+  - id: 20
+    name: IoT
+    color: "#f59e0b"
+  - id: 30
+    name: Wi-Fi Clients
+    color: "#a855f7"
+  - id: 99
+    name: Transit
+    color: "#ef4444"
+
+devices:
+  - id: core
+    template: cisco-4500x
+    name: Core Switch
+    mgmt_ip: 10.0.0.10
+    x: 0
+    "y": 0
+    vlans:
+      "1": trunk
+      "2": trunk
+  - id: dist
+    template: hp-5700
+    name: Distribution Switch
+    mgmt_ip: 10.0.0.11
+    x: 0
+    "y": 420
+    vlans:
+      "20": 20
+      "21": [20, 30]
+      "51": trunk
+      "52": trunk
+  - id: ap
+    template: generic-small-1eth
+    name: Access Point
+    mgmt_ip: 10.20.1.10
+    x: -620
+    "y": 420
+    vlans:
+      ETH0: [20, 30]
+  - id: server
+    template: generic-2u-2sfp-1qsfp-mgmt
+    name: App Server
+    mgmt_ip: 10.10.20.20
+    x: 720
+    "y": 20
+    vlans:
+      SFP0: 10
+      MGMT: 99
+
+links:
+  - id: core-dist-trunk
+    name: Core Trunk
+    type: trunk
+    state: up
+    endpoints:
+      - device: core
+        ports: ["1", "2"]
+      - device: dist
+        ports: ["51", "52"]
+  - id: ap-access
+    name: AP Trunk
+    type: trunk
+    state: up
+    endpoints:
+      - device: ap
+        ports: [ETH0]
+      - device: dist
+        ports: ["21"]
+  - id: server-access
+    name: Server Access
+    type: link
+    state: up
+    endpoints:
+      - device: server
+        ports: [SFP0]
+      - device: core
+        ports: ["3"]

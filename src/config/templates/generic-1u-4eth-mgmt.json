@@ -1,0 +1,14 @@
+{
+  "id": "generic-1u-4eth-mgmt",
+  "label": "Generic 1U Server",
+  "width": 1000,
+  "height": 130,
+  "chassis": "generic-1u",
+  "ports": [
+    { "id": "ETH0", "label": "ETH0", "type": "rj45", "speed": "1G", "x": 300, "y": 66, "w": 46, "h": 40 },
+    { "id": "ETH1", "label": "ETH1", "type": "rj45", "speed": "1G", "x": 400, "y": 66, "w": 46, "h": 40 },
+    { "id": "ETH2", "label": "ETH2", "type": "rj45", "speed": "1G", "x": 500, "y": 66, "w": 46, "h": 40 },
+    { "id": "ETH3", "label": "ETH3", "type": "rj45", "speed": "1G", "x": 600, "y": 66, "w": 46, "h": 40 },
+    { "id": "MGMT", "label": "MGMT", "type": "rj45", "speed": "1G", "x": 700, "y": 66, "w": 46, "h": 40 }
+  ]
+}

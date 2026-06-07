@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 200">
+  <defs>
+    <linearGradient id="gs-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#33373b"/>
+      <stop offset="0.5" stop-color="#22262a"/>
+      <stop offset="1" stop-color="#121417"/>
+    </linearGradient>
+    <linearGradient id="gs-panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0b0c"/>
+      <stop offset="0.5" stop-color="#15171a"/>
+      <stop offset="1" stop-color="#050606"/>
+    </linearGradient>
+  </defs>
+
+  <g class="chassis chassis-generic-small">
+    <!-- body -->
+    <rect x="10" y="20" width="400" height="160" rx="16" fill="url(#gs-body)" stroke="#050606" stroke-width="2"/>
+    <rect x="14" y="24" width="392" height="3" rx="1.5" fill="#4a4f54" opacity="0.5"/>
+
+    <!-- top vent slots -->
+    <g fill="#0c0e10" stroke="#3a3f44" stroke-width="0.6" opacity="0.8">
+      <rect x="150" y="36" width="120" height="5" rx="2.5"/>
+      <rect x="150" y="48" width="120" height="5" rx="2.5"/>
+      <rect x="150" y="60" width="120" height="5" rx="2.5"/>
+    </g>
+
+    <!-- power LED + button (decoration) -->
+    <circle cx="48" cy="46" r="6" fill="#15171a" stroke="#0a0b0c" stroke-width="1"/>
+    <circle cx="48" cy="46" r="2.6" fill="#2f8f4a"/>
+    <circle cx="48" cy="150" r="9" fill="#1c1f22" stroke="#0a0b0c" stroke-width="1.2"/>
+    <circle cx="48" cy="150" r="4" fill="#0e1012"/>
+
+    <!-- I/O panel recess -->
+    <rect x="78" y="118" width="284" height="64" rx="6" fill="url(#gs-panel)" stroke="#000000" stroke-width="2"/>
+    <rect x="81" y="121" width="278" height="58" rx="5" fill="none" stroke="#34383b" stroke-width="0.8" opacity="0.6"/>
+
+    <!-- brand silkscreen -->
+    <text x="210" y="100" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="2" fill="#5a5e62">DEVICE</text>
+  </g>
+</svg>

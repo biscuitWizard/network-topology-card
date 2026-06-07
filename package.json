@@ -1,0 +1,30 @@
+{
+  "name": "network-topology-card",
+  "version": "0.1.0",
+  "description": "Home Assistant custom Lovelace card that renders a network topology with composited SVG device chassis, per-port status, and auto-drawn LAGG/trunk/QSFP+ fan-out links.",
+  "type": "module",
+  "main": "dist/network-topology-card.js",
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "watch": "node esbuild.config.mjs --watch",
+    "dev": "node esbuild.config.mjs --watch --serve",
+    "screenshot": "node scripts/screenshot.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "home-assistant",
+    "lovelace",
+    "custom-card",
+    "network",
+    "topology"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "playwright": "^1.49.1",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "lit": "^3.2.1"
+  }
+}

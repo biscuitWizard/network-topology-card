@@ -1,0 +1,13 @@
+{
+  "id": "generic-2u-2sfp-1qsfp-mgmt",
+  "label": "Generic 2U Server",
+  "width": 1000,
+  "height": 260,
+  "chassis": "generic-2u",
+  "ports": [
+    { "id": "SFP0",  "label": "SFP0",  "type": "sfp+",  "speed": "10G", "x": 320, "y": 208, "w": 50, "h": 27 },
+    { "id": "SFP1",  "label": "SFP1",  "type": "sfp+",  "speed": "10G", "x": 440, "y": 208, "w": 50, "h": 27 },
+    { "id": "QSFP0", "label": "QSFP0", "type": "qsfp+", "speed": "40G", "x": 560, "y": 208, "w": 58, "h": 32 },
+    { "id": "MGMT",  "label": "MGMT",  "type": "rj45",  "speed": "1G",  "x": 680, "y": 208, "w": 46, "h": 40 }
+  ]
+}

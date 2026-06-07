@@ -1,0 +1,139 @@
+type: custom:network-topology-card
+title: Grouped Network Zones
+layout:
+  padding: 90
+  device_scale: 0.9
+  link_curvature: 0.4
+
+legend:
+  show: true
+  title: Zones
+  position: top-left
+
+vlans:
+  - id: 10
+    name: Server Zone
+    color: "#22c55e"
+  - id: 20
+    name: Edge Zone
+    color: "#f59e0b"
+  - id: 30
+    name: Client Zone
+    color: "#a855f7"
+
+# Groups draw dashed colored boxes behind the listed devices.
+groups:
+  - id: edge
+    name: Edge
+    vlan: 20
+    devices: [firewall, dist]
+  - id: servers
+    name: Servers
+    vlan: 10
+    devices: [storage, compute]
+  - id: clients
+    name: Clients
+    color: "#a855f7"
+    devices: [ap, zigbee]
+
+devices:
+  - id: firewall
+    template: nuc-n150
+    name: Firewall
+    mgmt_ip: 10.0.0.1
+    x: -520
+    "y": -260
+    vlans:
+      SFP0: trunk
+  - id: dist
+    template: hp-5700
+    name: Distribution
+    mgmt_ip: 10.0.0.11
+    x: -520
+    "y": 160
+    vlans:
+      "21": [20, 30]
+      "33": 10
+      "34": 10
+  - id: storage
+    template: generic-4u-4eth-2sfp-mgmt
+    name: Storage
+    mgmt_ip: 10.10.20.10
+    x: 520
+    "y": -260
+    scale: 0.95
+    vlans:
+      SFP0: 10
+      MGMT: 20
+  - id: compute
+    template: generic-2u-4eth-mgmt
+    name: Compute Node
+    mgmt_ip: 10.10.20.11
+    x: 520
+    "y": 120
+    vlans:
+      ETH1: 10
+      MGMT: 20
+  - id: ap
+    template: generic-small-1eth
+    name: Wi-Fi AP
+    mgmt_ip: 10.20.1.10
+    x: -980
+    "y": 520
+    vlans:
+      ETH0: [20, 30]
+  - id: zigbee
+    template: generic-small-1eth
+    name: Zigbee Bridge
+    mgmt_ip: 10.20.5.5
+    x: -180
+    "y": 520
+    vlans:
+      ETH0: 20
+
+links:
+  - id: firewall-dist
+    name: Edge Trunk
+    type: trunk
+    state: up
+    endpoints:
+      - device: firewall
+        ports: [SFP0]
+      - device: dist
+        ports: ["51"]
+  - id: storage-link
+    name: Storage
+    type: link
+    state: up
+    endpoints:
+      - device: storage
+        ports: [SFP0]
+      - device: dist
+        ports: ["33"]
+  - id: compute-link
+    name: Compute
+    type: link
+    state: up
+    endpoints:
+      - device: compute
+        ports: [ETH1]
+      - device: dist
+        ports: ["34"]
+  - id: ap-link
+    name: AP
+    type: trunk
+    state: up
+    endpoints:
+      - device: ap
+        ports: [ETH0]
+      - device: dist
+        ports: ["21"]
+  - id: zigbee-link
+    name: IoT
+    type: link
+    state: up
+    endpoints:
+      - device: zigbee
+        ports: [ETH0]
+      - device: dist
+        ports: ["20"]
