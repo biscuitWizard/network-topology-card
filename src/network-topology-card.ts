@@ -33,7 +33,7 @@ interface ViewTransform {
   ty: number;
 }
 
-const CARD_VERSION = "0.1.2";
+const CARD_VERSION = "0.1.3";
 
 @customElement("network-topology-card")
 export class NetworkTopologyCard extends LitElement {
