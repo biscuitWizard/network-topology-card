@@ -7,6 +7,28 @@ A custom Home Assistant Lovelace card that renders a front-on network topology u
 
 This repository is the dashboard card distribution for HACS. Optional live SNMP polling is provided by the companion integration: [biscuitWizard/network-topology-snmp](https://github.com/biscuitWizard/network-topology-snmp).
 
+## Gallery
+
+Each image links to the dashboard YAML that produced it.
+
+| Minimal | VLANs + Legend |
+| --- | --- |
+| [![Minimal network topology preview](images/examples/01-minimal.svg)](examples/01-minimal.yaml) | [![VLAN legend preview](images/examples/02-vlans-legend.svg)](examples/02-vlans-legend.yaml) |
+
+| Groups | LAGG / Trunk / Fanout |
+| --- | --- |
+| [![Grouped zones preview](images/examples/03-groups.svg)](examples/03-groups.yaml) | [![LAGG trunk fanout preview](images/examples/04-lagg-trunk-fanout.svg)](examples/04-lagg-trunk-fanout.yaml) |
+
+| Custom Template | Live Status |
+| --- | --- |
+| [![Custom template preview](images/examples/05-custom-template.svg)](examples/05-custom-template.yaml) | [![Live status preview](images/examples/06-live-status.svg)](examples/06-live-status.yaml) |
+
+| Full Showcase |
+| --- |
+| [![Full home network preview](images/examples/99-full-home-network.svg)](examples/99-full-home-network.yaml) |
+
+The committed SVG previews are lightweight and render on GitHub without extra tooling. To regenerate browser-captured PNG screenshots from the real card renderer, run `npm run screenshots`; PNG files are written to `images/examples/*.png`.
+
 ## Features
 
 - Composite SVG rendering: chassis artwork plus RJ45, SFP+, and QSFP+ port symbols with status LEDs.
@@ -19,7 +41,16 @@ This repository is the dashboard card distribution for HACS. Optional live SNMP 
 - Drag to pan, scroll to zoom, and reset view from the header.
 - Optional live status for `up`, `down`, `disabled`, and `flapping` ports through Home Assistant entities or the SNMP companion integration.
 
-No screenshot is bundled in this repository. To generate a local rendering check, use `npm run screenshot`.
+## What You Configure
+
+The card is intentionally data-driven:
+
+- `templates` define reusable device models: chassis dimensions, chassis SVG key, and port coordinates.
+- `devices` place template instances onto the canvas with names, management IPs, VLAN membership, telemetry sensors, and per-device scale.
+- `links` connect ordered endpoint ports; LAGG/trunk members are paired by index, and QSFP fanout maps four SFP+ lanes to one QSFP+ cage.
+- `vlans` and `legend` color ports and cables so access links, trunks, and multi-VLAN paths are legible.
+- `groups` draw rack/zone/VLAN boxes behind related devices.
+- `layout` controls padding, global scale, and cable curvature.
 
 ## Quickstart
 
@@ -97,6 +128,18 @@ Bump the `?v=` query string whenever you replace the file so Home Assistant and 
 
 The built `dist/network-topology-card.js` file is self-contained with Lit and all SVG assets bundled.
 
+## Examples
+
+Start with one of the included examples and replace the device positions, management IPs, VLANs, and links with your own topology:
+
+- [Minimal card](examples/01-minimal.yaml) - two devices and one simple link.
+- [VLANs and legend](examples/02-vlans-legend.yaml) - access VLANs, all-VLAN trunks, subset trunks, and a pinned legend.
+- [Groups](examples/03-groups.yaml) - dashed zone boxes for edge, server, and client segments.
+- [LAGG, trunk, and fanout](examples/04-lagg-trunk-fanout.yaml) - bonded members plus QSFP 40G to 4x10G breakout.
+- [Custom template](examples/05-custom-template.yaml) - inline template authoring for a device model that is not built in.
+- [Live status](examples/06-live-status.yaml) - `telemetry_entity` and `port_map` wiring for the SNMP companion integration.
+- [Full home network](examples/99-full-home-network.yaml) - the complete showcase with VLANs, groups, fanout, and telemetry.
+
 ## Documentation
 
 - [Installation](docs/installation.md)
@@ -105,16 +148,6 @@ The built `dist/network-topology-card.js` file is self-contained with Lit and al
 - [Live Status](docs/live-status.md)
 - [Development](docs/development.md)
 - [Troubleshooting](docs/troubleshooting.md)
-
-Examples:
-
-- [Minimal card](examples/01-minimal.yaml)
-- [VLANs and legend](examples/02-vlans-legend.yaml)
-- [Groups](examples/03-groups.yaml)
-- [LAGG, trunk, and fanout](examples/04-lagg-trunk-fanout.yaml)
-- [Custom template](examples/05-custom-template.yaml)
-- [Live status](examples/06-live-status.yaml)
-- [Full home network](examples/99-full-home-network.yaml)
 
 ## Live SNMP Status
 
@@ -138,8 +171,9 @@ Status precedence is telemetry, then member/link entity, then static state, then
 npm install
 npm run dev
 npm run screenshot
+npm run screenshots
 npm run typecheck
 npm run build
 ```
 
-`npm run dev` serves the standalone rendering harness. `npm run screenshot` captures a visual smoke test. `npm run typecheck` validates TypeScript. `npm run build` writes the bundled HACS/manual-install artifact to `dist/network-topology-card.js`.
+`npm run dev` serves the standalone rendering harness. `npm run screenshot` captures the default dev topology. `npm run screenshots` captures every example through `dev/example.html`. `npm run typecheck` validates TypeScript. `npm run build` writes the bundled HACS/manual-install artifact to `dist/network-topology-card.js`.

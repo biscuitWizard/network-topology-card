@@ -9,6 +9,7 @@
     "watch": "node esbuild.config.mjs --watch",
     "dev": "node esbuild.config.mjs --watch --serve",
     "screenshot": "node scripts/screenshot.mjs",
+    "screenshots": "node scripts/screenshot-examples.mjs",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>network-topology-card examples</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        padding: 28px;
+        background: #11151a;
+        color: #e7eaee;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+      main {
+        width: 1280px;
+        max-width: calc(100vw - 56px);
+        margin: 0 auto;
+      }
+      header {
+        margin: 0 0 16px;
+      }
+      .eyebrow {
+        margin: 0 0 4px;
+        color: #9aa3ad;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 0;
+        font-size: 1.35rem;
+        line-height: 1.2;
+      }
+      network-topology-card {
+        --ha-card-background: #1c2026;
+        --card-background-color: #1c2026;
+        --ha-card-border-radius: 16px;
+        --primary-text-color: #e7eaee;
+        --secondary-text-color: #9aa3ad;
+        display: block;
+      }
+      .error {
+        padding: 16px;
+        border: 1px solid #f0464a;
+        border-radius: 12px;
+        background: rgba(240, 70, 74, 0.12);
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Network Topology Card</p>
+        <h1 id="title">Example</h1>
+      </header>
+      <network-topology-card id="card"></network-topology-card>
+    </main>
+
+    <script type="module">
+      import "../dist/network-topology-card.js";
+      import { examples, exampleOrder } from "./example-configs.js";
+
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("example") || exampleOrder[0];
+      const example = examples[id];
+      const title = document.getElementById("title");
+      const card = document.getElementById("card");
+
+      if (!example) {
+        title.textContent = "Unknown example";
+        card.replaceWith(Object.assign(document.createElement("pre"), {
+          className: "error",
+          textContent: `Unknown example '${id}'. Available examples:\n${exampleOrder.join("\n")}`,
+        }));
+      } else {
+        title.textContent = example.label;
+        customElements.whenDefined("network-topology-card").then(() => {
+          card.setConfig(example.config);
+          card.hass = example.hass || { language: "en", states: {} };
+          window.__ntcReady = true;
+        });
+      }
+    </script>
+  </body>
+</html>
